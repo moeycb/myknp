@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
+use DateTime;
 
 $loader = require_once __DIR__.'/app/bootstrap.php.cache';
 Debug::enable();
@@ -19,13 +20,15 @@ $container->set('request', $request);
 
 // all setup is done! Woo hoo!
 
-$templating = $container->get('templating');
+use Yoda\EventBundle\Entity\Event;
 
-echo $templating->render(
-  'EventBundle:Default:index.html.twig',
-  array(
-    'name' => 'Vader',
-    'count' => 5
-  )
-);
+$event = new Event();
+$event->setName('Darth\'s surprise birthday party!');
+$event->setLocation('Deathstart');
+$event->setTime(new DateTime('tomorrow noon'));
+//$event->setDetails('Ha! Darth hates surprises!');
+
+$em = $container->get('doctrine')->getEntityManager();
+$em->persist($event);
+$em->flush();
 
