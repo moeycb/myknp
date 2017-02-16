@@ -49,5 +49,8 @@
             "dev-master": "2.4-dev"
         },
         "symfony-assets-install": "symlink"
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "~2.2.0"
     }
 }

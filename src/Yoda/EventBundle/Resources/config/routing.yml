@@ -4,3 +4,7 @@ foo_bar_event_import:
 event_homepage:
     path:     /hello/{firstName}/{count}
     defaults: { _controller: EventBundle:Default:index }
+
+event_annotationx:
+    resource: "@EventBundle/Controller"
+    type:     annotation
